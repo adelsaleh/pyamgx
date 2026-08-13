@@ -14,6 +14,17 @@ class TestSystem:
         pyamgx.pin_memory(a)
         pyamgx.unpin_memory(a)
 
+    def test_get_device_memory_stats(self):
+        stats = pyamgx.get_device_memory_stats()
+        assert set(stats) == {
+            "live_bytes",
+            "reserved_bytes",
+            "peak_live_bytes",
+            "peak_reserved_bytes",
+        }
+        assert all(isinstance(value, int) for value in stats.values())
+        assert all(value >= 0 for value in stats.values())
+
     def teardown(self):
         pyamgx.finalize()
 

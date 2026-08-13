@@ -237,3 +237,58 @@ class TestSolver:
         M.destroy()
         x.destroy()
         b.destroy()
+
+    def test_bicgstab_residual_matches_explicit_residual(self):
+        row_ptrs = np.array([0, 2, 5, 7], dtype=np.int32)
+        col_indices = np.array([0, 1, 0, 1, 2, 1, 2], dtype=np.int32)
+        values = np.array([4., 1., 2., 3., 1., 1., 2.], dtype=np.float64)
+        dense_matrix = np.array([
+            [4., 1., 0.],
+            [2., 3., 1.],
+            [0., 1., 2.],
+        ], dtype=np.float64)
+        rhs = np.array([1., 2., 3.], dtype=np.float64)
+        solution = np.zeros(3, dtype=np.float64)
+
+        self.cfg.create_from_dict({
+            "config_version": 2,
+            "solver": {
+                "solver": "BICGSTAB",
+                "preconditioner": {"solver": "NOSOLVER"},
+                "max_iters": 1,
+                "tolerance": 1e-30,
+                "convergence": "ABSOLUTE",
+                "norm": "L2",
+                "monitor_residual": 1,
+                "store_res_history": 1,
+            },
+        })
+
+        matrix = pyamgx.Matrix().create(self.rsrc)
+        b = pyamgx.Vector().create(self.rsrc)
+        x = pyamgx.Vector().create(self.rsrc)
+        solver = pyamgx.Solver().create(self.rsrc, self.cfg)
+
+        try:
+            matrix.upload(row_ptrs, col_indices, values)
+            b.upload(rhs)
+            x.upload(solution)
+            solver.setup(matrix)
+            solver.solve(b, x, zero_initial_guess=True)
+            x.download(solution)
+
+            reported_residual = solver.get_residual(1)
+            explicit_residual = np.linalg.norm(rhs - dense_matrix.dot(solution))
+
+            assert solver.iterations_number == 1
+            assert_allclose(
+                reported_residual,
+                explicit_residual,
+                rtol=1e-12,
+                atol=1e-12,
+            )
+        finally:
+            solver.destroy()
+            matrix.destroy()
+            x.destroy()
+            b.destroy()

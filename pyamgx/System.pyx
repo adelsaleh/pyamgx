@@ -32,6 +32,30 @@ def unpin_memory(double[:] data):
         &data[0]))
 
 
+def get_device_memory_stats():
+    """
+    Return process-wide AMGX device-allocation counters in bytes.
+
+    The live counters track storage currently used by AMGX objects. The
+    reserved counters include AMGX-owned pool capacity retained for reuse.
+    """
+    cdef size_t live_bytes
+    cdef size_t reserved_bytes
+    cdef size_t peak_live_bytes
+    cdef size_t peak_reserved_bytes
+    check_error(AMGX_get_device_memory_stats(
+        &live_bytes,
+        &reserved_bytes,
+        &peak_live_bytes,
+        &peak_reserved_bytes))
+    return {
+        "live_bytes": live_bytes,
+        "reserved_bytes": reserved_bytes,
+        "peak_live_bytes": peak_live_bytes,
+        "peak_reserved_bytes": peak_reserved_bytes,
+    }
+
+
 def install_signal_handler():
     """
     Cause AMGX to install its default signal handlers.

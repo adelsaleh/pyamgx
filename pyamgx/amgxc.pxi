@@ -67,6 +67,11 @@ cdef extern from "amgx_c.h":
 
     AMGX_RC AMGX_unpin_memory(void *ptr)
 
+    AMGX_RC AMGX_get_device_memory_stats(size_t *live_bytes,
+        size_t *reserved_bytes,
+        size_t *peak_live_bytes,
+        size_t *peak_reserved_bytes)
+
     AMGX_RC AMGX_install_signal_handler()
 
     AMGX_RC AMGX_reset_signal_handler()

@@ -21,7 +21,9 @@ class AMGXError(Exception):
     """
     Exception class for errors returned from calls to AMGX routines.
     """
-    pass
+    def __init__(self, message, error_code=None):
+        super().__init__(message)
+        self.error_code = error_code
 
 
 def get_error_string(err_code):
@@ -59,4 +61,4 @@ def check_error(err_code):
         Error code returned from call to an AMGX routine.
     """
     if err_code is not RC.OK:
-        raise AMGXError(get_error_string(err_code))
+        raise AMGXError(get_error_string(err_code), error_code=err_code)
