@@ -73,7 +73,9 @@ def reset_signal_handler():
 cdef void c_register_print_callback(AMGX_print_callback function):
     AMGX_register_print_callback(function)
 
-cdef void c_print_callback(const char *msg, int length) noexcept:
+# Native setup/solve can invoke this callback without holding the GIL.
+# Reacquire it before decoding text and calling the Python logger.
+cdef void c_print_callback(const char *msg, int length) noexcept with gil:
     global print_callback
     print_callback(msg.decode('utf-8'))
 

@@ -147,17 +147,17 @@ cdef extern from "amgx_c.h":
 
     AMGX_RC AMGX_solver_setup(
         AMGX_solver_handle slv,
-        AMGX_matrix_handle mtx)
+        AMGX_matrix_handle mtx) nogil
 
     AMGX_RC AMGX_solver_solve(
         AMGX_solver_handle slv,
         AMGX_vector_handle rhs,
-        AMGX_vector_handle sol)
+        AMGX_vector_handle sol) nogil
 
     AMGX_RC AMGX_solver_solve_with_0_initial_guess(
         AMGX_solver_handle slv,
         AMGX_vector_handle rhs,
-        AMGX_vector_handle sol)
+        AMGX_vector_handle sol) nogil
 
     AMGX_RC AMGX_solver_get_iterations_number(
         AMGX_solver_handle slv,

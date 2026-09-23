@@ -43,9 +43,11 @@ cdef class Solver:
             to be solved.
         """
         self.A = A
-        check_error(AMGX_solver_setup(
-            self.slv,
-            A.mtx))
+        cdef AMGX_RC status
+        # Native setup runs without the GIL; error handling retains it.
+        with nogil:
+            status = AMGX_solver_setup(self.slv, A.mtx)
+        check_error(status)
 
     def solve(self, Vector b, Vector x, zero_initial_guess=False):
         """
@@ -83,11 +85,14 @@ cdef class Solver:
             raise ValueError, "RHS - solution dimension mismatch: {} != {}".format(
                 b_size, x_size)
 
+        cdef AMGX_RC status
         if zero_initial_guess:
-             check_error(AMGX_solver_solve_with_0_initial_guess(
-                self.slv, b.vec, x.vec))
+            with nogil:
+                status = AMGX_solver_solve_with_0_initial_guess(self.slv, b.vec, x.vec)
         else:
-            check_error(AMGX_solver_solve(self.slv, b.vec, x.vec))
+            with nogil:
+                status = AMGX_solver_solve(self.slv, b.vec, x.vec)
+        check_error(status)
 
     @property
     def status(self):
