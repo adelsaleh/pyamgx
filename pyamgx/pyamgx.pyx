@@ -10,6 +10,7 @@ include "Resources.pyx"
 include "Matrix.pyx"
 include "Vector.pyx"
 include "Solver.pyx"
+include "ReusableSolver.pyx"
 
 
 def initialize():
