@@ -1,0 +1,672 @@
+{
+  "timestamp_utc": "2026-09-28T13:42:51.645177+00:00",
+  "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+  "cupy_version": "14.2.0",
+  "pyamgx_extension": "pyamgx.cpython-312-x86_64-linux-gnu.so",
+  "config": {
+    "config_version": 2,
+    "exception_handling": 0,
+    "determinism_flag": 1,
+    "solver": {
+      "scope": "main",
+      "solver": "FGMRES",
+      "max_iters": 200,
+      "gmres_n_restart": 30,
+      "monitor_residual": 1,
+      "convergence": "RELATIVE_INI_CORE",
+      "tolerance": 1e-08,
+      "preconditioner": {
+        "scope": "amg",
+        "solver": "AMG",
+        "algorithm": "CLASSICAL",
+        "selector": "PMIS",
+        "interpolator": "D2",
+        "max_iters": 1,
+        "max_levels": 15,
+        "min_coarse_rows": 32,
+        "cycle": "V",
+        "presweeps": 2,
+        "postsweeps": 2,
+        "smoother": {
+          "scope": "smooth",
+          "solver": "JACOBI_L1"
+        },
+        "coarse_solver": "DENSE_LU_SOLVER",
+        "structure_reuse_levels": 0
+      }
+    }
+  },
+  "rows": 1000000,
+  "nnz": 6940000,
+  "rhs_count": 5,
+  "side": 100,
+  "dimension": 3,
+  "shift": 0.1,
+  "borrowed_payload_bytes": 103280004,
+  "phases": [
+    {
+      "kind": "explicit_reuse",
+      "construct_ms": 38.49605121649802,
+      "first_setup_ms": 105.91534897685051,
+      "samples": [
+        {
+          "rhs_index": 0,
+          "setup_ms": 0.0012530945241451263,
+          "solve_ms": 27.776489965617657,
+          "total_ms": 27.777743060141802,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2455044389189403e-09,
+          "relative_solution_error": 3.079311112866344e-09
+        },
+        {
+          "rhs_index": 1,
+          "setup_ms": 0.0009979121387004852,
+          "solve_ms": 27.93290000408888,
+          "total_ms": 27.93389791622758,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2598751138393238e-09,
+          "relative_solution_error": 3.092316436913987e-09
+        },
+        {
+          "rhs_index": 2,
+          "setup_ms": 0.0011310912668704987,
+          "solve_ms": 29.21330207027495,
+          "total_ms": 29.21443316154182,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2959481723132077e-09,
+          "relative_solution_error": 3.2122951228263963e-09
+        },
+        {
+          "rhs_index": 3,
+          "setup_ms": 0.0011050142347812653,
+          "solve_ms": 38.348727161064744,
+          "total_ms": 38.349832175299525,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2753242870071205e-09,
+          "relative_solution_error": 3.1500418737769314e-09
+        },
+        {
+          "rhs_index": 4,
+          "setup_ms": 0.0009790528565645218,
+          "solve_ms": 32.31963608413935,
+          "total_ms": 32.32061513699591,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2822805211685856e-09,
+          "relative_solution_error": 3.1748776347428027e-09
+        }
+      ],
+      "all_five_pointers_match": true,
+      "csr_unchanged": true,
+      "memory": {
+        "before_resources": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3464888320
+        },
+        "after_setup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4616224768
+        },
+        "after_warmup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4616224768
+        },
+        "after_solves": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4752539648
+        },
+        "after_validation": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4752539648
+        },
+        "after_destroy": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3521511424
+        }
+      }
+    },
+    {
+      "kind": "reusable_reuse",
+      "construct_ms": 28.418176108971238,
+      "first_setup_ms": 88.04383804090321,
+      "samples": [
+        {
+          "rhs_index": 0,
+          "setup_ms": 0.001050066202878952,
+          "solve_ms": 33.13307580538094,
+          "total_ms": 33.13412587158382,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2455044389189403e-09,
+          "relative_solution_error": 3.079311112866344e-09
+        },
+        {
+          "rhs_index": 1,
+          "setup_ms": 0.001061009243130684,
+          "solve_ms": 32.379087060689926,
+          "total_ms": 32.38014806993306,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2598751138393238e-09,
+          "relative_solution_error": 3.092316436913987e-09
+        },
+        {
+          "rhs_index": 2,
+          "setup_ms": 0.0010319054126739502,
+          "solve_ms": 35.20064102485776,
+          "total_ms": 35.20167293027043,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2959481723132077e-09,
+          "relative_solution_error": 3.2122951228263963e-09
+        },
+        {
+          "rhs_index": 3,
+          "setup_ms": 0.0010288786143064499,
+          "solve_ms": 37.02155314385891,
+          "total_ms": 37.022582022473216,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2753242870071205e-09,
+          "relative_solution_error": 3.1500418737769314e-09
+        },
+        {
+          "rhs_index": 4,
+          "setup_ms": 0.0010668300092220306,
+          "solve_ms": 36.2409190274775,
+          "total_ms": 36.241985857486725,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2822805211685856e-09,
+          "relative_solution_error": 3.1748776347428027e-09
+        }
+      ],
+      "all_five_pointers_match": true,
+      "csr_unchanged": true,
+      "memory": {
+        "before_resources": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3521511424
+        },
+        "after_setup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4647682048
+        },
+        "after_warmup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4647682048
+        },
+        "after_solves": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4704698368
+        },
+        "after_validation": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4704698368
+        },
+        "after_destroy": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473670144
+        }
+      }
+    },
+    {
+      "kind": "setup_each_rhs",
+      "construct_ms": 27.864346047863364,
+      "first_setup_ms": 94.51295877806842,
+      "samples": [
+        {
+          "rhs_index": 0,
+          "setup_ms": 93.12132885679603,
+          "solve_ms": 33.41266303323209,
+          "total_ms": 126.53399189002812,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2455044389189403e-09,
+          "relative_solution_error": 3.079311112866344e-09
+        },
+        {
+          "rhs_index": 1,
+          "setup_ms": 95.11838504113257,
+          "solve_ms": 30.553042888641357,
+          "total_ms": 125.67142792977393,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2598751138393238e-09,
+          "relative_solution_error": 3.092316436913987e-09
+        },
+        {
+          "rhs_index": 2,
+          "setup_ms": 75.59974701143801,
+          "solve_ms": 27.331142919138074,
+          "total_ms": 102.93088993057609,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2959481723132077e-09,
+          "relative_solution_error": 3.2122951228263963e-09
+        },
+        {
+          "rhs_index": 3,
+          "setup_ms": 73.09690513648093,
+          "solve_ms": 28.973858803510666,
+          "total_ms": 102.0707639399916,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2753242870071205e-09,
+          "relative_solution_error": 3.1500418737769314e-09
+        },
+        {
+          "rhs_index": 4,
+          "setup_ms": 73.36424407549202,
+          "solve_ms": 27.327336836606264,
+          "total_ms": 100.69158091209829,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2822805211685856e-09,
+          "relative_solution_error": 3.1748776347428027e-09
+        }
+      ],
+      "all_five_pointers_match": true,
+      "csr_unchanged": true,
+      "memory": {
+        "before_resources": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473670144
+        },
+        "after_setup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4599840768
+        },
+        "after_warmup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4599840768
+        },
+        "after_solves": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4823973888
+        },
+        "after_validation": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4823973888
+        },
+        "after_destroy": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473408000
+        }
+      }
+    },
+    {
+      "kind": "setup_each_rhs",
+      "construct_ms": 28.67359505034983,
+      "first_setup_ms": 73.61094793304801,
+      "samples": [
+        {
+          "rhs_index": 0,
+          "setup_ms": 73.26518604531884,
+          "solve_ms": 27.359087020158768,
+          "total_ms": 100.62427306547761,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2455044389189403e-09,
+          "relative_solution_error": 3.079311112866344e-09
+        },
+        {
+          "rhs_index": 1,
+          "setup_ms": 73.1431080494076,
+          "solve_ms": 27.34307385981083,
+          "total_ms": 100.48618190921843,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2598751138393238e-09,
+          "relative_solution_error": 3.092316436913987e-09
+        },
+        {
+          "rhs_index": 2,
+          "setup_ms": 73.11168406158686,
+          "solve_ms": 27.30201301164925,
+          "total_ms": 100.41369707323611,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2959481723132077e-09,
+          "relative_solution_error": 3.2122951228263963e-09
+        },
+        {
+          "rhs_index": 3,
+          "setup_ms": 72.89610803127289,
+          "solve_ms": 27.278379071503878,
+          "total_ms": 100.17448710277677,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2753242870071205e-09,
+          "relative_solution_error": 3.1500418737769314e-09
+        },
+        {
+          "rhs_index": 4,
+          "setup_ms": 73.16375686787069,
+          "solve_ms": 27.33687497675419,
+          "total_ms": 100.50063184462488,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2822805211685856e-09,
+          "relative_solution_error": 3.1748776347428027e-09
+        }
+      ],
+      "all_five_pointers_match": true,
+      "csr_unchanged": true,
+      "memory": {
+        "before_resources": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473408000
+        },
+        "after_setup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4599578624
+        },
+        "after_warmup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4599578624
+        },
+        "after_solves": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4823973888
+        },
+        "after_validation": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4823973888
+        },
+        "after_destroy": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473408000
+        }
+      }
+    },
+    {
+      "kind": "reusable_reuse",
+      "construct_ms": 27.5427158921957,
+      "first_setup_ms": 73.70169903151691,
+      "samples": [
+        {
+          "rhs_index": 0,
+          "setup_ms": 0.001326901838183403,
+          "solve_ms": 27.735627023503184,
+          "total_ms": 27.736953925341368,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2455044389189403e-09,
+          "relative_solution_error": 3.079311112866344e-09
+        },
+        {
+          "rhs_index": 1,
+          "setup_ms": 0.0010619405657052994,
+          "solve_ms": 27.770641958341002,
+          "total_ms": 27.771703898906708,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2598751138393238e-09,
+          "relative_solution_error": 3.092316436913987e-09
+        },
+        {
+          "rhs_index": 2,
+          "setup_ms": 0.0008279457688331604,
+          "solve_ms": 28.30598712898791,
+          "total_ms": 28.30681507475674,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2959481723132077e-09,
+          "relative_solution_error": 3.2122951228263963e-09
+        },
+        {
+          "rhs_index": 3,
+          "setup_ms": 0.0010780058801174164,
+          "solve_ms": 27.595045045018196,
+          "total_ms": 27.596123050898314,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2753242870071205e-09,
+          "relative_solution_error": 3.1500418737769314e-09
+        },
+        {
+          "rhs_index": 4,
+          "setup_ms": 0.0008838251233100891,
+          "solve_ms": 27.615792118012905,
+          "total_ms": 27.616675943136215,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2822805211685856e-09,
+          "relative_solution_error": 3.1748776347428027e-09
+        }
+      ],
+      "all_five_pointers_match": true,
+      "csr_unchanged": true,
+      "memory": {
+        "before_resources": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473408000
+        },
+        "after_setup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4599578624
+        },
+        "after_warmup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4599578624
+        },
+        "after_solves": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4704436224
+        },
+        "after_validation": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4704436224
+        },
+        "after_destroy": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473408000
+        }
+      }
+    },
+    {
+      "kind": "explicit_reuse",
+      "construct_ms": 26.84114989824593,
+      "first_setup_ms": 84.69404908828437,
+      "samples": [
+        {
+          "rhs_index": 0,
+          "setup_ms": 0.001042848452925682,
+          "solve_ms": 35.18414101563394,
+          "total_ms": 35.185183864086866,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2455044389189403e-09,
+          "relative_solution_error": 3.079311112866344e-09
+        },
+        {
+          "rhs_index": 1,
+          "setup_ms": 0.0010649673640727997,
+          "solve_ms": 34.23426393419504,
+          "total_ms": 34.235328901559114,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2598751138393238e-09,
+          "relative_solution_error": 3.092316436913987e-09
+        },
+        {
+          "rhs_index": 2,
+          "setup_ms": 0.0009480863809585571,
+          "solve_ms": 34.84319103881717,
+          "total_ms": 34.844139125198126,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2959481723132077e-09,
+          "relative_solution_error": 3.2122951228263963e-09
+        },
+        {
+          "rhs_index": 3,
+          "setup_ms": 0.0009641516953706741,
+          "solve_ms": 34.192920895293355,
+          "total_ms": 34.193885046988726,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2753242870071205e-09,
+          "relative_solution_error": 3.1500418737769314e-09
+        },
+        {
+          "rhs_index": 4,
+          "setup_ms": 0.0010048970580101013,
+          "solve_ms": 35.248553147539496,
+          "total_ms": 35.24955804459751,
+          "iterations": 9,
+          "status": "success",
+          "relative_residual": 1.2822805211685856e-09,
+          "relative_solution_error": 3.1748776347428027e-09
+        }
+      ],
+      "all_five_pointers_match": true,
+      "csr_unchanged": true,
+      "memory": {
+        "before_resources": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473408000
+        },
+        "after_setup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4599840768
+        },
+        "after_warmup": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4599840768
+        },
+        "after_solves": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4704698368
+        },
+        "after_validation": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 4704698368
+        },
+        "after_destroy": {
+          "cupy_live_bytes": 270565888,
+          "cupy_reserved_bytes": 475103744,
+          "device_used_bytes": 3473670144
+        }
+      }
+    }
+  ],
+  "notes": [
+    "Unscaled seven-point Dirichlet Laplacian + 0.1 I; FP64.",
+    "Different seeded random exact solutions, b=A*x; fixed CSR in timed phases.",
+    "Zero initial guess each solve; RHS copy, zeroing and validation excluded from timer.",
+    "Forward and reverse phase order; one warmup solve per phase.",
+    "structure_reuse_levels=0 requests full hierarchy rebuild on setup.",
+    "Initial construction/setup outside table; setup_each_rhs includes setup before every RHS.",
+    "Memory snapshots include reference arrays and native reservations, not transient peaks.",
+    "Hierarchy print diagnostics enabled only in separate coefficient-refresh check."
+  ],
+  "amgx_libraries": [
+    "libamgxsh.so"
+  ],
+  "median_ms_per_rhs": {
+    "explicit_reuse": 34.21460697427392,
+    "reusable_reuse": 30.3434815723449,
+    "setup_each_rhs": 100.65792698878795
+  },
+  "coefficient_refresh_check": {
+    "events": [
+      {
+        "operation": "initial_setup_shift_0.1",
+        "elapsed_ms": 90.63037997111678,
+        "hierarchy_reports": 1,
+        "native_output": "AMG Grid:\n         Number of Levels: 5\n            LVL         ROWS               NNZ  PARTS    SPRSTY       Mem (GB)\n        ----------------------------------------------------------------------\n           0(D)      1000000           6940000      1  6.94e-06          0.104\n           1(D)       306065          16728165      1  0.000179          0.386\n           2(D)        35541           5778941      1   0.00457          0.131\n           3(D)         2896            898014      1     0.107         0.0202\n           4(D)          286             75204      1     0.919        0.00169\n         ----------------------------------------------------------------------\n         Grid Complexity: 1.34479\n         Operator Complexity: 4.38333\n         Total Memory Usage: 0.642718 GB\n         ----------------------------------------------------------------------\n"
+      },
+      {
+        "operation": "solve_without_setup",
+        "elapsed_ms": 33.96487794816494,
+        "hierarchy_reports": 0,
+        "native_output": ""
+      },
+      {
+        "operation": "rebuild_after_shift_1.0",
+        "elapsed_ms": 76.7865648958832,
+        "hierarchy_reports": 1,
+        "native_output": "AMG Grid:\n         Number of Levels: 6\n            LVL         ROWS               NNZ  PARTS    SPRSTY       Mem (GB)\n        ----------------------------------------------------------------------\n           0(D)      1000000           6940000      1  6.94e-06          0.104\n           1(D)       306065          16728165      1  0.000179          0.386\n           2(D)        35926           5806970      1    0.0045          0.131\n           3(D)         4168           2143978      1     0.123         0.0481\n           4(D)         1433            972635      1     0.474         0.0218\n           5(D)          439            190305      1     0.987        0.00427\n         ----------------------------------------------------------------------\n         Grid Complexity: 1.34803\n         Operator Complexity: 4.72364\n         Total Memory Usage: 0.695675 GB\n         ----------------------------------------------------------------------\n"
+      },
+      {
+        "operation": "solve_after_rebuild",
+        "elapsed_ms": 30.368166975677013,
+        "hierarchy_reports": 0,
+        "native_output": ""
+      },
+      {
+        "operation": "fresh_setup_shift_1.0",
+        "elapsed_ms": 77.11151894181967,
+        "hierarchy_reports": 1,
+        "native_output": "AMG Grid:\n         Number of Levels: 6\n            LVL         ROWS               NNZ  PARTS    SPRSTY       Mem (GB)\n        ----------------------------------------------------------------------\n           0(D)      1000000           6940000      1  6.94e-06          0.104\n           1(D)       306065          16728165      1  0.000179          0.386\n           2(D)        35926           5806970      1    0.0045          0.131\n           3(D)         4168           2143978      1     0.123         0.0481\n           4(D)         1433            972635      1     0.474         0.0218\n           5(D)          439            190305      1     0.987        0.00427\n         ----------------------------------------------------------------------\n         Grid Complexity: 1.34803\n         Operator Complexity: 4.72364\n         Total Memory Usage: 0.695675 GB\n         ----------------------------------------------------------------------\n"
+      },
+      {
+        "operation": "fresh_solve",
+        "elapsed_ms": 31.034732004627585,
+        "hierarchy_reports": 0,
+        "native_output": ""
+      }
+    ],
+    "initial": {
+      "relative_residual": 1.2455044389189403e-09,
+      "relative_solution_error": 3.079311112866344e-09,
+      "status": "success",
+      "iterations": 9
+    },
+    "updated": {
+      "relative_residual": 9.652461865372403e-10,
+      "relative_solution_error": 1.6879940597562997e-09,
+      "status": "success",
+      "iterations": 8
+    },
+    "fresh": {
+      "relative_residual": 9.652461865372403e-10,
+      "relative_solution_error": 1.6879940597562997e-09,
+      "status": "success",
+      "iterations": 8
+    },
+    "relative_difference_updated_vs_fresh": 0.0,
+    "all_five_pointers_unchanged": true
+  }
+}

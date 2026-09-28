@@ -1,0 +1,147 @@
+{
+  "timestamp_utc": "2026-09-28T13:26:31.655422+00:00",
+  "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+  "cupy_version": "14.2.0",
+  "pyamgx_extension": "pyamgx.cpython-312-x86_64-linux-gnu.so",
+  "amgx_libraries": [
+    "libamgxsh.so"
+  ],
+  "solves_per_batch": 100,
+  "batches_per_phase": 5,
+  "warmup_solves_per_phase": 20,
+  "config": {
+    "config_version": 2,
+    "exception_handling": 0,
+    "solver": {
+      "solver": "FGMRES",
+      "preconditioner": {
+        "solver": "NOSOLVER"
+      },
+      "max_iters": 100,
+      "gmres_n_restart": 20,
+      "monitor_residual": 1,
+      "convergence": "RELATIVE_INI_CORE",
+      "tolerance": 1e-10
+    }
+  },
+  "results": [
+    {
+      "n": 20000,
+      "nnz": 59998,
+      "phases": [
+        {
+          "kind": "explicit",
+          "startup_including_first_solve_ms": 47.390987165272236,
+          "batch_mean_us_per_solve": [
+            3275.4920702427626,
+            3470.4379201866686,
+            3570.7015497609973,
+            3547.280509956181,
+            3586.2577613443136
+          ],
+          "median_us_per_solve": 3547.280509956181,
+          "iterations_last_solve": 15,
+          "relative_residual": 7.068184293444461e-11,
+          "max_solution_error": 3.648798818645105e-09,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            1121280,
+            1121280
+          ],
+          "cupy_reserved_bytes_before_after": [
+            4078080,
+            4078080
+          ],
+          "device_memory_change_bytes": 2883584
+        },
+        {
+          "kind": "reusable",
+          "startup_including_first_solve_ms": 35.47553112730384,
+          "batch_mean_us_per_solve": [
+            3553.745709359646,
+            3518.978690262884,
+            3400.9564807638526,
+            3496.3877010159194,
+            3541.275530587882
+          ],
+          "median_us_per_solve": 3518.978690262884,
+          "iterations_last_solve": 15,
+          "relative_residual": 7.068184293444461e-11,
+          "max_solution_error": 3.648798818645105e-09,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            1121280,
+            1121280
+          ],
+          "cupy_reserved_bytes_before_after": [
+            4078080,
+            4078080
+          ],
+          "device_memory_change_bytes": 0
+        },
+        {
+          "kind": "reusable",
+          "startup_including_first_solve_ms": 32.75006101466715,
+          "batch_mean_us_per_solve": [
+            3564.1755000688136,
+            3456.019728910178,
+            3531.8806185387075,
+            3550.693260040134,
+            3630.8433301746845
+          ],
+          "median_us_per_solve": 3550.693260040134,
+          "iterations_last_solve": 15,
+          "relative_residual": 7.068184293444461e-11,
+          "max_solution_error": 3.648798818645105e-09,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            1121280,
+            1121280
+          ],
+          "cupy_reserved_bytes_before_after": [
+            4078080,
+            4078080
+          ],
+          "device_memory_change_bytes": -2883584
+        },
+        {
+          "kind": "explicit",
+          "startup_including_first_solve_ms": 41.2455431651324,
+          "batch_mean_us_per_solve": [
+            3586.101320106536,
+            3469.3781100213528,
+            3447.8765912353992,
+            3515.811669640243,
+            3571.8827112577856
+          ],
+          "median_us_per_solve": 3515.811669640243,
+          "iterations_last_solve": 15,
+          "relative_residual": 7.068184293444461e-11,
+          "max_solution_error": 3.648798818645105e-09,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            1121280,
+            1121280
+          ],
+          "cupy_reserved_bytes_before_after": [
+            4078080,
+            4078080
+          ],
+          "device_memory_change_bytes": 0
+        }
+      ],
+      "median_us_per_solve": {
+        "explicit": 3531.546089798212,
+        "reusable": 3536.5780745632946
+      },
+      "reusable_minus_explicit_us": 5.031984765082598,
+      "reusable_over_explicit": 1.0014248673632262
+    }
+  ],
+  "notes": [
+    "Wall-clock latency includes synchronous GPU work, Python dispatch and CuPy output zeroing.",
+    "Both paths call out.fill(0) before every solve; no warm-start iteration advantage.",
+    "Medians summarize batch means; small differences may be timing noise.",
+    "Memory counters exclude transient peaks and allocations within native pools."
+  ]
+}

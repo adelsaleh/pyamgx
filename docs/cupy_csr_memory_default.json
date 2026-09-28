@@ -1,0 +1,212 @@
+{
+  "timestamp_utc": "2026-09-28T12:21:31.070869+00:00",
+  "n": 4096,
+  "nnz": 12286,
+  "mode": "dDDI",
+  "amgx_pool": "default",
+  "config": {
+    "config_version": 2,
+    "exception_handling": 0,
+    "solver(main)": "FGMRES",
+    "main:preconditioner": "NOSOLVER",
+    "main:max_iters": 100,
+    "main:gmres_n_restart": 20,
+    "main:tolerance": 1e-10,
+    "main:monitor_residual": 1,
+    "main:convergence": "RELATIVE_INI_CORE"
+  },
+  "buffers": {
+    "indptr": {
+      "bytes": 16388,
+      "cupy_ptr": 127772997728768
+    },
+    "indices": {
+      "bytes": 49144,
+      "cupy_ptr": 127772997650432
+    },
+    "data": {
+      "bytes": 98288,
+      "cupy_ptr": 127772997992448
+    },
+    "rhs": {
+      "bytes": 32768,
+      "cupy_ptr": 127772997517312
+    },
+    "solution": {
+      "bytes": 32768,
+      "cupy_ptr": 127772997484544
+    }
+  },
+  "shared_payload_bytes": 229356,
+  "native_pointers": {
+    "attached": {
+      "indptr": 127772997728768,
+      "indices": 127772997650432,
+      "data": 127772997992448,
+      "rhs": 127772997517312,
+      "solution": 127772997484544
+    },
+    "after_setup": {
+      "indptr": 127772997728768,
+      "indices": 127772997650432,
+      "data": 127772997992448,
+      "rhs": 127772997517312,
+      "solution": 127772997484544
+    },
+    "after_solve": {
+      "indptr": 127772997728768,
+      "indices": 127772997650432,
+      "data": 127772997992448,
+      "rhs": 127772997517312,
+      "solution": 127772997484544
+    }
+  },
+  "all_five_pointers_match": true,
+  "relative_residual": 4.1825647908245114e-11,
+  "max_solution_error": 9.76577707589854e-10,
+  "measurements": [
+    {
+      "stage": "cuda_context_ready",
+      "device_used_bytes": 2687696896,
+      "device_free_bytes": 48041164800,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 0,
+      "cupy_reserved_bytes": 0
+    },
+    {
+      "stage": "cupy_inputs_ready",
+      "device_used_bytes": 2691891200,
+      "device_free_bytes": 48036970496,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 4194304,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "amgx_initialized",
+      "device_used_bytes": 2691891200,
+      "device_free_bytes": 48036970496,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "amgx_resources_ready",
+      "device_used_bytes": 2968715264,
+      "device_free_bytes": 47760146432,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 276824064,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "empty_handles_ready",
+      "device_used_bytes": 3023241216,
+      "device_free_bytes": 47705620480,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 54525952,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "matrix_attached",
+      "device_used_bytes": 3023241216,
+      "device_free_bytes": 47705620480,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "vectors_attached",
+      "device_used_bytes": 3023241216,
+      "device_free_bytes": 47705620480,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "solver_setup",
+      "device_used_bytes": 3023241216,
+      "device_free_bytes": 47705620480,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "solver_solve",
+      "device_used_bytes": 3023241216,
+      "device_free_bytes": 47705620480,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "solution_verified",
+      "device_used_bytes": 3023241216,
+      "device_free_bytes": 47705620480,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "amgx_objects_destroyed",
+      "device_used_bytes": 2746417152,
+      "device_free_bytes": 47982444544,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": -276824064,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "amgx_finalized",
+      "device_used_bytes": 2746417152,
+      "device_free_bytes": 47982444544,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 229888,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "cupy_arrays_deleted",
+      "device_used_bytes": 2746417152,
+      "device_free_bytes": 47982444544,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": 0,
+      "cupy_live_bytes": 0,
+      "cupy_reserved_bytes": 841216
+    },
+    {
+      "stage": "cupy_pool_released",
+      "device_used_bytes": 2744320000,
+      "device_free_bytes": 47984541696,
+      "device_total_bytes": 50728861696,
+      "device_delta_previous_bytes": -2097152,
+      "cupy_live_bytes": 0,
+      "cupy_reserved_bytes": 0
+    }
+  ],
+  "measurement_notes": [
+    "Synchronized stage snapshots, not transient peak measurements.",
+    "CUDA device memory includes other processes, context, libraries and allocator pools.",
+    "CuPy pool counters exclude allocations made directly by AMGX.",
+    "A zero device delta can mean reuse of reserved memory; pointer checks establish aliasing.",
+    "Freeing arrays/pools does not destroy the CUDA context or unload all GPU libraries."
+  ],
+  "environment": {
+    "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+    "cupy_version": "14.2.0",
+    "pyamgx_extension": "pyamgx.cpython-312-x86_64-linux-gnu.so",
+    "cuda_runtime": 13020,
+    "cuda_driver": 13000,
+    "amgx_libraries": [
+      "libamgxsh.so"
+    ]
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "timestamp_utc": "2026-09-28T13:00:55.002562+00:00",
+  "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+  "cupy_version": "14.2.0",
+  "pyamgx_extension": "pyamgx.cpython-312-x86_64-linux-gnu.so",
+  "amgx_libraries": [
+    "libamgxsh.so"
+  ],
+  "solves_per_batch": 100,
+  "batches_per_phase": 5,
+  "warmup_solves_per_phase": 20,
+  "config": {
+    "config_version": 2,
+    "exception_handling": 0,
+    "solver": {
+      "solver": "FGMRES",
+      "preconditioner": {
+        "solver": "NOSOLVER"
+      },
+      "max_iters": 100,
+      "gmres_n_restart": 20,
+      "monitor_residual": 1,
+      "convergence": "RELATIVE_INI_CORE",
+      "tolerance": 1e-10
+    }
+  },
+  "results": [
+    {
+      "n": 2,
+      "nnz": 4,
+      "phases": [
+        {
+          "kind": "explicit",
+          "startup_including_first_solve_ms": 43.534297961741686,
+          "batch_mean_us_per_solve": [
+            146.93347038701177,
+            141.5639603510499,
+            139.0110095962882,
+            137.39108107984066,
+            142.09649059921503
+          ],
+          "median_us_per_solve": 141.5639603510499,
+          "iterations_last_solve": 1,
+          "relative_residual": 2.960594732333751e-16,
+          "max_solution_error": 2.220446049250313e-16,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            2560,
+            2560
+          ],
+          "cupy_reserved_bytes_before_after": [
+            9216,
+            9216
+          ],
+          "device_memory_change_bytes": 0
+        },
+        {
+          "kind": "reusable",
+          "startup_including_first_solve_ms": 28.3281949814409,
+          "batch_mean_us_per_solve": [
+            143.90319120138884,
+            138.45595996826887,
+            140.82594076171517,
+            228.77192124724388,
+            143.27988028526306
+          ],
+          "median_us_per_solve": 143.27988028526306,
+          "iterations_last_solve": 1,
+          "relative_residual": 2.960594732333751e-16,
+          "max_solution_error": 2.220446049250313e-16,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            2560,
+            2560
+          ],
+          "cupy_reserved_bytes_before_after": [
+            9216,
+            9216
+          ],
+          "device_memory_change_bytes": 0
+        },
+        {
+          "kind": "reusable",
+          "startup_including_first_solve_ms": 26.462882990017533,
+          "batch_mean_us_per_solve": [
+            142.6744321361184,
+            140.42867114767432,
+            141.85948995873332,
+            140.05716890096664,
+            240.51017127931118
+          ],
+          "median_us_per_solve": 141.85948995873332,
+          "iterations_last_solve": 1,
+          "relative_residual": 2.960594732333751e-16,
+          "max_solution_error": 2.220446049250313e-16,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            2560,
+            2560
+          ],
+          "cupy_reserved_bytes_before_after": [
+            9216,
+            9216
+          ],
+          "device_memory_change_bytes": 8388608
+        },
+        {
+          "kind": "explicit",
+          "startup_including_first_solve_ms": 28.353506000712514,
+          "batch_mean_us_per_solve": [
+            212.22448907792568,
+            167.03335801139474,
+            195.67481009289622,
+            165.5923784710467,
+            212.4456688761711
+          ],
+          "median_us_per_solve": 195.67481009289622,
+          "iterations_last_solve": 1,
+          "relative_residual": 2.960594732333751e-16,
+          "max_solution_error": 2.220446049250313e-16,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            2560,
+            2560
+          ],
+          "cupy_reserved_bytes_before_after": [
+            9216,
+            9216
+          ],
+          "device_memory_change_bytes": 0
+        }
+      ],
+      "median_us_per_solve": {
+        "explicit": 156.26292442902923,
+        "reusable": 142.26696104742587
+      },
+      "reusable_minus_explicit_us": -13.99596338160336,
+      "reusable_over_explicit": 0.9104332429925821
+    },
+    {
+      "n": 4096,
+      "nnz": 12286,
+      "phases": [
+        {
+          "kind": "explicit",
+          "startup_including_first_solve_ms": 36.553243873640895,
+          "batch_mean_us_per_solve": [
+            2798.0230911634862,
+            2620.0053398497403,
+            2707.183591555804,
+            2704.24417918548,
+            2699.293429031968
+          ],
+          "median_us_per_solve": 2704.24417918548,
+          "iterations_last_solve": 16,
+          "relative_residual": 4.1825647908245114e-11,
+          "max_solution_error": 9.76577707589854e-10,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            229888,
+            229888
+          ],
+          "cupy_reserved_bytes_before_after": [
+            846848,
+            846848
+          ],
+          "device_memory_change_bytes": 0
+        },
+        {
+          "kind": "reusable",
+          "startup_including_first_solve_ms": 30.934141017496586,
+          "batch_mean_us_per_solve": [
+            2629.6930597163737,
+            2710.946260485798,
+            2625.1318398863077,
+            2613.9044808223844,
+            2706.2418800778687
+          ],
+          "median_us_per_solve": 2629.6930597163737,
+          "iterations_last_solve": 16,
+          "relative_residual": 4.1825647908245114e-11,
+          "max_solution_error": 9.76577707589854e-10,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            229888,
+            229888
+          ],
+          "cupy_reserved_bytes_before_after": [
+            846848,
+            846848
+          ],
+          "device_memory_change_bytes": 0
+        },
+        {
+          "kind": "reusable",
+          "startup_including_first_solve_ms": 30.03844991326332,
+          "batch_mean_us_per_solve": [
+            2628.2462989911437,
+            2615.2197807095945,
+            2633.9887897484004,
+            2627.280969172716,
+            2640.979001298547
+          ],
+          "median_us_per_solve": 2628.2462989911437,
+          "iterations_last_solve": 16,
+          "relative_residual": 4.1825647908245114e-11,
+          "max_solution_error": 9.76577707589854e-10,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            229888,
+            229888
+          ],
+          "cupy_reserved_bytes_before_after": [
+            846848,
+            846848
+          ],
+          "device_memory_change_bytes": 0
+        },
+        {
+          "kind": "explicit",
+          "startup_including_first_solve_ms": 30.33523913472891,
+          "batch_mean_us_per_solve": [
+            2616.5031199343503,
+            2574.1487205959857,
+            2557.7928591519594,
+            2560.5816300958395,
+            2705.689000431448
+          ],
+          "median_us_per_solve": 2574.1487205959857,
+          "iterations_last_solve": 16,
+          "relative_residual": 4.1825647908245114e-11,
+          "max_solution_error": 9.76577707589854e-10,
+          "all_five_pointers_match": true,
+          "cupy_live_bytes_before_after": [
+            229888,
+            229888
+          ],
+          "cupy_reserved_bytes_before_after": [
+            846848,
+            846848
+          ],
+          "device_memory_change_bytes": 0
+        }
+      ],
+      "median_us_per_solve": {
+        "explicit": 2659.649384440854,
+        "reusable": 2628.9696793537587
+      },
+      "reusable_minus_explicit_us": -30.6797050870955,
+      "reusable_over_explicit": 0.9884647558183518
+    }
+  ],
+  "notes": [
+    "Wall-clock latency includes synchronous GPU work, Python dispatch and CuPy output zeroing.",
+    "Both paths call out.fill(0) before every solve; no warm-start iteration advantage.",
+    "Medians summarize batch means; small differences may be timing noise.",
+    "Memory counters exclude transient peaks and allocations within native pools."
+  ]
+}

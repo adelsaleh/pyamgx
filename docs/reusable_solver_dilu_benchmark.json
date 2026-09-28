@@ -1,0 +1,1716 @@
+{
+  "timestamp_utc": "2026-09-28T13:34:44.587007+00:00",
+  "config": {
+    "config_version": 2,
+    "exception_handling": 0,
+    "determinism_flag": 1,
+    "solver": {
+      "solver": "FGMRES",
+      "max_iters": 500,
+      "gmres_n_restart": 30,
+      "monitor_residual": 1,
+      "convergence": "RELATIVE_INI_CORE",
+      "tolerance": 1e-08,
+      "preconditioner": {
+        "solver": "MULTICOLOR_DILU",
+        "max_iters": 1,
+        "reorder_cols_by_color": 0,
+        "insert_diag_while_reordering": 0,
+        "coloring_level": 1,
+        "matrix_coloring_scheme": "MIN_MAX",
+        "max_uncolored_percentage": 0.0
+      }
+    }
+  },
+  "gpu": "NVIDIA RTX PRO 5000 Blackwell",
+  "cupy_version": "14.2.0",
+  "pyamgx_extension": "pyamgx.cpython-312-x86_64-linux-gnu.so",
+  "results": [
+    {
+      "case": "tridiagonal_120k",
+      "rows": 120000,
+      "nnz": 359998,
+      "borrowed_payload_bytes": 6719980,
+      "median_ms_per_rhs": {
+        "explicit_reuse": 1.9486029632389545,
+        "reusable_reuse": 1.8955650739371777,
+        "setup_each_rhs": 2.008103532716632
+      },
+      "phases": [
+        {
+          "kind": "explicit_reuse",
+          "construct_ms": 37.394371116533875,
+          "first_setup_ms": 6.823828211054206,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0013450626283884048,
+              "solve_ms": 2.4230959825217724,
+              "total_ms": 2.424441045150161,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.614719690363885e-09,
+              "relative_solution_error": 5.996042552532909e-09
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.0013660173863172531,
+              "solve_ms": 1.9838039297610521,
+              "total_ms": 1.9851699471473694,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.595301760403025e-09,
+              "relative_solution_error": 5.968518257624523e-09
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0009450595825910568,
+              "solve_ms": 1.95080297999084,
+              "total_ms": 1.951748039573431,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.520482030126355e-09,
+              "relative_solution_error": 5.880105121197371e-09
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.000835862010717392,
+              "solve_ms": 1.9446220248937607,
+              "total_ms": 1.945457886904478,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.578755695646928e-09,
+              "relative_solution_error": 5.932338836368445e-09
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0009080395102500916,
+              "solve_ms": 1.803098013624549,
+              "total_ms": 1.804006053134799,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.618103460066034e-09,
+              "relative_solution_error": 5.9882154603910995e-09
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 24411648,
+              "device_used_bytes": 2747662336
+            },
+            "after_setup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 24411648,
+              "device_used_bytes": 3079012352
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 24411648,
+              "device_used_bytes": 3081109504
+            },
+            "after_solves": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_validation": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            }
+          }
+        },
+        {
+          "kind": "reusable_reuse",
+          "construct_ms": 28.511937940493226,
+          "first_setup_ms": 0.6345040164887905,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0011851079761981964,
+              "solve_ms": 1.8855659291148186,
+              "total_ms": 1.8867510370910168,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.614719690363885e-09,
+              "relative_solution_error": 5.996042552532909e-09
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.0009280629456043243,
+              "solve_ms": 1.8951750826090574,
+              "total_ms": 1.8961031455546618,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.595301760403025e-09,
+              "relative_solution_error": 5.968518257624523e-09
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0007601920515298843,
+              "solve_ms": 1.8796089570969343,
+              "total_ms": 1.8803691491484642,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.520482030126355e-09,
+              "relative_solution_error": 5.880105121197371e-09
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0008300412446260452,
+              "solve_ms": 1.8941969610750675,
+              "total_ms": 1.8950270023196936,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.578755695646928e-09,
+              "relative_solution_error": 5.932338836368445e-09
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0007909256964921951,
+              "solve_ms": 1.7390321008861065,
+              "total_ms": 1.7398230265825987,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.618103460066034e-09,
+              "relative_solution_error": 5.9882154603910995e-09
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            },
+            "after_setup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_solves": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_validation": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            }
+          }
+        },
+        {
+          "kind": "setup_each_rhs",
+          "construct_ms": 26.23933693394065,
+          "first_setup_ms": 0.7347441278398037,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.4046419635415077,
+              "solve_ms": 5.871464032679796,
+              "total_ms": 6.276105996221304,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.614719690363885e-09,
+              "relative_solution_error": 5.996042552532909e-09
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.44261012226343155,
+              "solve_ms": 1.588574843481183,
+              "total_ms": 2.0311849657446146,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.595301760403025e-09,
+              "relative_solution_error": 5.968518257624523e-09
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.422121025621891,
+              "solve_ms": 1.5619141049683094,
+              "total_ms": 1.9840351305902004,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.520482030126355e-09,
+              "relative_solution_error": 5.880105121197371e-09
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.42250403203070164,
+              "solve_ms": 1.5509349759668112,
+              "total_ms": 1.9734390079975128,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.578755695646928e-09,
+              "relative_solution_error": 5.932338836368445e-09
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.409731175750494,
+              "solve_ms": 1.6038469038903713,
+              "total_ms": 2.0135780796408653,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.618103460066034e-09,
+              "relative_solution_error": 5.9882154603910995e-09
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            },
+            "after_setup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_solves": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_validation": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            }
+          }
+        },
+        {
+          "kind": "setup_each_rhs",
+          "construct_ms": 27.948249829933047,
+          "first_setup_ms": 0.5768339615315199,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.3882749006152153,
+              "solve_ms": 3.8469149731099606,
+              "total_ms": 4.235189873725176,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.614719690363885e-09,
+              "relative_solution_error": 5.996042552532909e-09
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.4296198021620512,
+              "solve_ms": 1.5730091836303473,
+              "total_ms": 2.0026289857923985,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.595301760403025e-09,
+              "relative_solution_error": 5.968518257624523e-09
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.42065116576850414,
+              "solve_ms": 1.5479368157684803,
+              "total_ms": 1.9685879815369844,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.520482030126355e-09,
+              "relative_solution_error": 5.880105121197371e-09
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.411350978538394,
+              "solve_ms": 1.6747659537941217,
+              "total_ms": 2.0861169323325157,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.578755695646928e-09,
+              "relative_solution_error": 5.932338836368445e-09
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.3972291015088558,
+              "solve_ms": 1.5160208567976952,
+              "total_ms": 1.913249958306551,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.618103460066034e-09,
+              "relative_solution_error": 5.9882154603910995e-09
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            },
+            "after_setup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_solves": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_validation": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            }
+          }
+        },
+        {
+          "kind": "reusable_reuse",
+          "construct_ms": 27.285892982035875,
+          "first_setup_ms": 0.6299607921391726,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.005229143425822258,
+              "solve_ms": 1.884897006675601,
+              "total_ms": 1.8901261501014233,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.614719690363885e-09,
+              "relative_solution_error": 5.996042552532909e-09
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.000884057953953743,
+              "solve_ms": 1.9123470410704613,
+              "total_ms": 1.913231099024415,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.595301760403025e-09,
+              "relative_solution_error": 5.968518257624523e-09
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0009110663086175919,
+              "solve_ms": 1.9100219942629337,
+              "total_ms": 1.9109330605715513,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.520482030126355e-09,
+              "relative_solution_error": 5.880105121197371e-09
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0009299255907535553,
+              "solve_ms": 1.9037050660699606,
+              "total_ms": 1.9046349916607141,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.578755695646928e-09,
+              "relative_solution_error": 5.932338836368445e-09
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0010458752512931824,
+              "solve_ms": 1.9423570483922958,
+              "total_ms": 1.943402923643589,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.618103460066034e-09,
+              "relative_solution_error": 5.9882154603910995e-09
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            },
+            "after_setup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_solves": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_validation": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            }
+          }
+        },
+        {
+          "kind": "explicit_reuse",
+          "construct_ms": 27.942394139245152,
+          "first_setup_ms": 0.46699587255716324,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0009541399776935577,
+              "solve_ms": 1.8919107969850302,
+              "total_ms": 1.8928649369627237,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.614719690363885e-09,
+              "relative_solution_error": 5.996042552532909e-09
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.000908970832824707,
+              "solve_ms": 2.354552038013935,
+              "total_ms": 2.35546100884676,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.595301760403025e-09,
+              "relative_solution_error": 5.968518257624523e-09
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0007920898497104645,
+              "solve_ms": 1.859049079939723,
+              "total_ms": 1.8598411697894335,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.520482030126355e-09,
+              "relative_solution_error": 5.880105121197371e-09
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0008349306881427765,
+              "solve_ms": 1.8827130552381277,
+              "total_ms": 1.8835479859262705,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.578755695646928e-09,
+              "relative_solution_error": 5.932338836368445e-09
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0008260831236839294,
+              "solve_ms": 1.9752578809857368,
+              "total_ms": 1.9760839641094208,
+              "iterations": 7,
+              "status": "success",
+              "relative_residual": 4.618103460066034e-09,
+              "relative_solution_error": 5.9882154603910995e-09
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            },
+            "after_setup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_solves": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_validation": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 3083206656
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 21121024,
+              "cupy_reserved_bytes": 25371648,
+              "device_used_bytes": 2806382592
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case": "shifted_2d_160k",
+      "rows": 160000,
+      "nnz": 798400,
+      "borrowed_payload_bytes": 12780804,
+      "median_ms_per_rhs": {
+        "explicit_reuse": 20.83011344075203,
+        "reusable_reuse": 20.623587421141565,
+        "setup_each_rhs": 20.2424410963431
+      },
+      "phases": [
+        {
+          "kind": "explicit_reuse",
+          "construct_ms": 27.284968178719282,
+          "first_setup_ms": 0.6870210636407137,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0014060642570257187,
+              "solve_ms": 22.61677710339427,
+              "total_ms": 22.618183167651296,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.5487589224798e-09,
+              "relative_solution_error": 2.111889192667492e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.0010130461305379868,
+              "solve_ms": 19.826372852548957,
+              "total_ms": 19.827385898679495,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.572799917644403e-09,
+              "relative_solution_error": 2.096860940636923e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.000801868736743927,
+              "solve_ms": 20.110928919166327,
+              "total_ms": 20.11173078790307,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.272445474734402e-09,
+              "relative_solution_error": 2.0934711862710424e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0008640345185995102,
+              "solve_ms": 19.429157953709364,
+              "total_ms": 19.430021988227963,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.684013941790608e-09,
+              "relative_solution_error": 2.0968173390553044e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0010258518159389496,
+              "solve_ms": 21.549033001065254,
+              "total_ms": 21.550058852881193,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.65156776575541e-09,
+              "relative_solution_error": 2.139898206515804e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            },
+            "after_setup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_solves": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_validation": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            }
+          }
+        },
+        {
+          "kind": "reusable_reuse",
+          "construct_ms": 28.082602890208364,
+          "first_setup_ms": 0.8284810464829206,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0012649688869714737,
+              "solve_ms": 20.01785091124475,
+              "total_ms": 20.01911588013172,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.5487589224798e-09,
+              "relative_solution_error": 2.111889192667492e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.0010689254850149155,
+              "solve_ms": 21.772113163024187,
+              "total_ms": 21.773182088509202,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.572799917644403e-09,
+              "relative_solution_error": 2.096860940636923e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0009350478649139404,
+              "solve_ms": 19.903674023225904,
+              "total_ms": 19.904609071090817,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.272445474734402e-09,
+              "relative_solution_error": 2.0934711862710424e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0008118804544210434,
+              "solve_ms": 17.35100708901882,
+              "total_ms": 17.351818969473243,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.684013941790608e-09,
+              "relative_solution_error": 2.0968173390553044e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0007480848580598831,
+              "solve_ms": 21.901875967159867,
+              "total_ms": 21.902624052017927,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.65156776575541e-09,
+              "relative_solution_error": 2.139898206515804e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            },
+            "after_setup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_solves": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_validation": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            }
+          }
+        },
+        {
+          "kind": "setup_each_rhs",
+          "construct_ms": 29.768787091597915,
+          "first_setup_ms": 0.8369970601052046,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.6290290039032698,
+              "solve_ms": 20.861783996224403,
+              "total_ms": 21.490813000127673,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.5487589224798e-09,
+              "relative_solution_error": 2.111889192667492e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.6167460232973099,
+              "solve_ms": 18.642758019268513,
+              "total_ms": 19.259504042565823,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.572799917644403e-09,
+              "relative_solution_error": 2.096860940636923e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.609315000474453,
+              "solve_ms": 20.551082910969853,
+              "total_ms": 21.160397911444306,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.272445474734402e-09,
+              "relative_solution_error": 2.0934711862710424e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.5968098994344473,
+              "solve_ms": 19.663804210722446,
+              "total_ms": 20.260614110156894,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.684013941790608e-09,
+              "relative_solution_error": 2.0968173390553044e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.6225970573723316,
+              "solve_ms": 19.601671025156975,
+              "total_ms": 20.224268082529306,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.65156776575541e-09,
+              "relative_solution_error": 2.139898206515804e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            },
+            "after_setup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_solves": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_validation": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            }
+          }
+        },
+        {
+          "kind": "setup_each_rhs",
+          "construct_ms": 28.33069022744894,
+          "first_setup_ms": 0.8697060402482748,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.6232310552150011,
+              "solve_ms": 18.98919604718685,
+              "total_ms": 19.612427102401853,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.5487589224798e-09,
+              "relative_solution_error": 2.111889192667492e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.6059131119400263,
+              "solve_ms": 16.124089946970344,
+              "total_ms": 16.73000305891037,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.572799917644403e-09,
+              "relative_solution_error": 2.096860940636923e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.5954520311206579,
+              "solve_ms": 21.614687982946634,
+              "total_ms": 22.210140014067292,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.272445474734402e-09,
+              "relative_solution_error": 2.0934711862710424e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.7467649411410093,
+              "solve_ms": 16.959640895947814,
+              "total_ms": 17.706405837088823,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.684013941790608e-09,
+              "relative_solution_error": 2.0968173390553044e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.5990120116621256,
+              "solve_ms": 21.386289969086647,
+              "total_ms": 21.985301980748773,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.65156776575541e-09,
+              "relative_solution_error": 2.139898206515804e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            },
+            "after_setup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_solves": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_validation": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            }
+          }
+        },
+        {
+          "kind": "reusable_reuse",
+          "construct_ms": 26.90759999677539,
+          "first_setup_ms": 0.7806241046637297,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0010819640010595322,
+              "solve_ms": 16.988063929602504,
+              "total_ms": 16.989145893603563,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.5487589224798e-09,
+              "relative_solution_error": 2.111889192667492e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.0008589122444391251,
+              "solve_ms": 21.22720004990697,
+              "total_ms": 21.228058962151408,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.572799917644403e-09,
+              "relative_solution_error": 2.096860940636923e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0010039657354354858,
+              "solve_ms": 19.123492995277047,
+              "total_ms": 19.124496961012483,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.272445474734402e-09,
+              "relative_solution_error": 2.0934711862710424e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0009809155017137527,
+              "solve_ms": 22.099127992987633,
+              "total_ms": 22.100108908489347,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.684013941790608e-09,
+              "relative_solution_error": 2.0968173390553044e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0008139759302139282,
+              "solve_ms": 22.489690920338035,
+              "total_ms": 22.49050489626825,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.65156776575541e-09,
+              "relative_solution_error": 2.139898206515804e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            },
+            "after_setup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_solves": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_validation": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            }
+          }
+        },
+        {
+          "kind": "explicit_reuse",
+          "construct_ms": 29.256348963826895,
+          "first_setup_ms": 0.6495709531009197,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0012759119272232056,
+              "solve_ms": 22.252124035730958,
+              "total_ms": 22.25339994765818,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.5487589224798e-09,
+              "relative_solution_error": 2.111889192667492e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.000941101461648941,
+              "solve_ms": 17.4789410084486,
+              "total_ms": 17.47988210991025,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.572799917644403e-09,
+              "relative_solution_error": 2.096860940636923e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0009110663086175919,
+              "solve_ms": 21.8458769377321,
+              "total_ms": 21.846788004040718,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.272445474734402e-09,
+              "relative_solution_error": 2.0934711862710424e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0008330680429935455,
+              "solve_ms": 21.547663025557995,
+              "total_ms": 21.54849609360099,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.684013941790608e-09,
+              "relative_solution_error": 2.0968173390553044e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0008910428732633591,
+              "solve_ms": 17.436512978747487,
+              "total_ms": 17.43740402162075,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 9.65156776575541e-09,
+              "relative_solution_error": 2.139898206515804e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            },
+            "after_setup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_solves": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_validation": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 3112566784
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 35803136,
+              "cupy_reserved_bytes": 53112320,
+              "device_used_bytes": 2835742720
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case": "shifted_3d_125k",
+      "rows": 125000,
+      "nnz": 860000,
+      "borrowed_payload_bytes": 12820004,
+      "median_ms_per_rhs": {
+        "explicit_reuse": 21.902113454416394,
+        "reusable_reuse": 20.95430053304881,
+        "setup_each_rhs": 21.336258971132338
+      },
+      "phases": [
+        {
+          "kind": "explicit_reuse",
+          "construct_ms": 27.491671964526176,
+          "first_setup_ms": 0.6982749328017235,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0011289957910776138,
+              "solve_ms": 23.242789087817073,
+              "total_ms": 23.24391808360815,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 6.4914767933491434e-09,
+              "relative_solution_error": 1.7707766600532455e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.0010600779205560684,
+              "solve_ms": 23.959456011652946,
+              "total_ms": 23.960516089573503,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.469918097382535e-09,
+              "relative_solution_error": 2.174755437907811e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.000934116542339325,
+              "solve_ms": 17.877116799354553,
+              "total_ms": 17.878050915896893,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.265590272277555e-09,
+              "relative_solution_error": 2.1686168773450814e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0010149087756872177,
+              "solve_ms": 22.08600495941937,
+              "total_ms": 22.087019868195057,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.881361056961694e-09,
+              "relative_solution_error": 2.4196934824884563e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0008861534297466278,
+              "solve_ms": 20.67142492160201,
+              "total_ms": 20.672311075031757,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.558974627594573e-09,
+              "relative_solution_error": 2.3660552103585946e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            },
+            "after_setup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_solves": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_validation": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            }
+          }
+        },
+        {
+          "kind": "reusable_reuse",
+          "construct_ms": 28.548355912789702,
+          "first_setup_ms": 4.829270066693425,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0011881347745656967,
+              "solve_ms": 22.236357908695936,
+              "total_ms": 22.237546043470502,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 6.4914767933491434e-09,
+              "relative_solution_error": 1.7707766600532455e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.000918051227927208,
+              "solve_ms": 20.50216682255268,
+              "total_ms": 20.503084873780608,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.469918097382535e-09,
+              "relative_solution_error": 2.174755437907811e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0008558854460716248,
+              "solve_ms": 18.778108060359955,
+              "total_ms": 18.778963945806026,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.265590272277555e-09,
+              "relative_solution_error": 2.1686168773450814e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0008759088814258575,
+              "solve_ms": 20.22238401696086,
+              "total_ms": 20.223259925842285,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.881361056961694e-09,
+              "relative_solution_error": 2.4196934824884563e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0008749775588512421,
+              "solve_ms": 22.899325005710125,
+              "total_ms": 22.900199983268976,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.558974627594573e-09,
+              "relative_solution_error": 2.3660552103585946e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            },
+            "after_setup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_solves": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_validation": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            }
+          }
+        },
+        {
+          "kind": "setup_each_rhs",
+          "construct_ms": 27.35861809924245,
+          "first_setup_ms": 0.8561010472476482,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 1.1593850795179605,
+              "solve_ms": 24.26928491331637,
+              "total_ms": 25.42866999283433,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 6.4914767933491434e-09,
+              "relative_solution_error": 1.7707766600532455e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.62964903190732,
+              "solve_ms": 19.634576980024576,
+              "total_ms": 20.264226011931896,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.469918097382535e-09,
+              "relative_solution_error": 2.174755437907811e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.6480470765382051,
+              "solve_ms": 20.851018838584423,
+              "total_ms": 21.499065915122628,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.265590272277555e-09,
+              "relative_solution_error": 2.1686168773450814e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.6238538771867752,
+              "solve_ms": 19.90655600093305,
+              "total_ms": 20.530409878119826,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.881361056961694e-09,
+              "relative_solution_error": 2.4196934824884563e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.6489069201052189,
+              "solve_ms": 20.52454510703683,
+              "total_ms": 21.173452027142048,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.558974627594573e-09,
+              "relative_solution_error": 2.3660552103585946e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            },
+            "after_setup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_solves": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_validation": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            }
+          }
+        },
+        {
+          "kind": "setup_each_rhs",
+          "construct_ms": 28.45232398249209,
+          "first_setup_ms": 0.854182057082653,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.6414540112018585,
+              "solve_ms": 22.06264599226415,
+              "total_ms": 22.70410000346601,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 6.4914767933491434e-09,
+              "relative_solution_error": 1.7707766600532455e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.6437969859689474,
+              "solve_ms": 18.178018042817712,
+              "total_ms": 18.82181502878666,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.469918097382535e-09,
+              "relative_solution_error": 2.174755437907811e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.6464440375566483,
+              "solve_ms": 21.643164800480008,
+              "total_ms": 22.289608838036656,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.265590272277555e-09,
+              "relative_solution_error": 2.1686168773450814e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.658959848806262,
+              "solve_ms": 20.992150995880365,
+              "total_ms": 21.651110844686627,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.881361056961694e-09,
+              "relative_solution_error": 2.4196934824884563e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.6588709075003862,
+              "solve_ms": 18.049377016723156,
+              "total_ms": 18.708247924223542,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.558974627594573e-09,
+              "relative_solution_error": 2.3660552103585946e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            },
+            "after_setup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_solves": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_validation": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            }
+          }
+        },
+        {
+          "kind": "reusable_reuse",
+          "construct_ms": 26.78932505659759,
+          "first_setup_ms": 0.8093900978565216,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0011730007827281952,
+              "solve_ms": 21.14873519167304,
+              "total_ms": 21.14990819245577,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 6.4914767933491434e-09,
+              "relative_solution_error": 1.7707766600532455e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.0010349322110414505,
+              "solve_ms": 22.559026954695582,
+              "total_ms": 22.560061886906624,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.469918097382535e-09,
+              "relative_solution_error": 2.174755437907811e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0007820781320333481,
+              "solve_ms": 20.19369206391275,
+              "total_ms": 20.194474142044783,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.265590272277555e-09,
+              "relative_solution_error": 2.1686168773450814e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0008658971637487411,
+              "solve_ms": 20.7578269764781,
+              "total_ms": 20.75869287364185,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.881361056961694e-09,
+              "relative_solution_error": 2.4196934824884563e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0008589122444391251,
+              "solve_ms": 22.89176220074296,
+              "total_ms": 22.8926211129874,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.558974627594573e-09,
+              "relative_solution_error": 2.3660552103585946e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            },
+            "after_setup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_solves": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_validation": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            }
+          }
+        },
+        {
+          "kind": "explicit_reuse",
+          "construct_ms": 28.59422704204917,
+          "first_setup_ms": 0.6695711053907871,
+          "samples": [
+            {
+              "rhs_index": 0,
+              "setup_ms": 0.0011220108717679977,
+              "solve_ms": 21.716085029765964,
+              "total_ms": 21.71720704063773,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 6.4914767933491434e-09,
+              "relative_solution_error": 1.7707766600532455e-07
+            },
+            {
+              "rhs_index": 1,
+              "setup_ms": 0.0009140931069850922,
+              "solve_ms": 22.9198660235852,
+              "total_ms": 22.920780116692185,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.469918097382535e-09,
+              "relative_solution_error": 2.174755437907811e-07
+            },
+            {
+              "rhs_index": 2,
+              "setup_ms": 0.0007119961082935333,
+              "solve_ms": 18.749407026916742,
+              "total_ms": 18.750119023025036,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.265590272277555e-09,
+              "relative_solution_error": 2.1686168773450814e-07
+            },
+            {
+              "rhs_index": 3,
+              "setup_ms": 0.0008489005267620087,
+              "solve_ms": 20.023341989144683,
+              "total_ms": 20.024190889671445,
+              "iterations": 29,
+              "status": "success",
+              "relative_residual": 7.881361056961694e-09,
+              "relative_solution_error": 2.4196934824884563e-07
+            },
+            {
+              "rhs_index": 4,
+              "setup_ms": 0.0008658971637487411,
+              "solve_ms": 22.705479990690947,
+              "total_ms": 22.706345887854695,
+              "iterations": 30,
+              "status": "success",
+              "relative_residual": 7.558974627594573e-09,
+              "relative_solution_error": 2.3660552103585946e-07
+            }
+          ],
+          "all_five_pointers_match": true,
+          "csr_unchanged": true,
+          "memory": {
+            "before_resources": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            },
+            "after_setup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_warmup": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_solves": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_validation": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 3133538304
+            },
+            "after_destroy": {
+              "cupy_live_bytes": 33646592,
+              "cupy_reserved_bytes": 59283456,
+              "device_used_bytes": 2856714240
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "FP64 fixed CSR; different seeded random exact solutions give b=A*x.",
+    "Same RHS sequence per phase; zero output before each solve; no warm starts.",
+    "RHS copy, output zeroing and residual checks excluded from timings.",
+    "Setup-each refreshes the same handles, not full resource recreation.",
+    "Forward then reverse phase order; one warmup solve per phase.",
+    "Memory snapshots include validation arrays; no transient peak measurement.",
+    "Device-wide memory includes other processes and native AMGX reservations."
+  ]
+}

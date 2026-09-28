@@ -1,8 +1,32 @@
 # pyamgx communication, logging, and CuPy roadmap
 
-This roadmap makes pyamgx a reliable Python boundary for AMGX: numerical telemetry must be correct, C failures must become useful Python exceptions, logs must integrate with Python tooling, and NumPy/CuPy transfers must have explicit device and stream semantics. Implementation and tests should use the matching AMGX and CuPy source repositories as the authoritative C API and CuPy behavior references.
+## Completed milestone — zero-copy CuPyX CSR
+
+- [x] Qualify `Matrix.attach_CSR()` against the new native CSR attachment API.
+  All three native CSR regressions, Python integration (136 tests), PTDS
+  attachment (43 tests), memory checking, and FP32/FP64 profiling pass.
+  Qualification covers the documented single-GPU scalar CSR contract; dDFI
+  checks its existing unsupported mixed-precision solve error.
+  See [borrowed CSR](docs/borrowed_csr.md) and its validation record.
+
+This roadmap makes pyamgx a reliable Python boundary for AMGX: numerical telemetry must be correct, C failures must become useful Python exceptions, logs must integrate with Python tooling, and NumPy/CuPy transfers must have explicit device and stream semantics. Implementation and tests should use the local `../AMGX` and `../cupy` repositories as the authoritative C API and CuPy behavior references.
 
 Work for this roadmap continues on local development branch `quality-of-life`, matching the AMGX development branch.
+
+## Completed milestone — zero-copy borrowed device vectors
+
+- [x] Add and validate AMGX borrowed device vectors, then expose PyAMGX
+  `Vector.attach()` against the matching AMGX source and build.
+  Source implementation, native/GPU tests, and the
+  [build and validation guide](docs/borrowed_vectors.md) are complete. CPU
+  protocol tests, AMGX compilation, dDDI/dFFI native/GPU regressions, and
+  transfer profiling pass; see the [validation record](docs/borrowed_vectors_validation.md).
+  The dDFI solve regression exposes the existing unsupported mixed-precision
+  SpMV path; mixed solves are documented as outside this milestone. Regression
+  tests check its expected error. Final results: 3 native, 100 Python, and
+  23 PTDS attachment tests pass. The user runs AMGX builds.
+  The guarantee is shared RHS/solution allocations, not merely D2D transfers.
+  BSR integration is paused; matrix borrowing is a later scalar-CSR milestone.
 
 ## P0 — expose correct solve results
 
@@ -35,10 +59,12 @@ Work for this roadmap continues on local development branch `quality-of-life`, m
 
 ## P1 — reusable solver and preconditioner lifecycle
 
-- [ ] Add a first-class `ReusableSolver` context manager for fixed operators.
-  - Own `Config`, `Resources`, `Matrix`, reusable RHS/solution vectors, and `Solver` with deterministic cleanup; expose `setup(A)` once followed by repeated `solve(b, x0=None)` calls without recreating handles.
-  - Publish observable state such as `is_setup`, shape/block dimensions, dtype/mode, device, setup generation, solve count, last setup action, and whether the hierarchy was rebuilt or reused.
-  - Reject use-after-close, solve-before-setup, incompatible vectors, and configuration mutation after setup with precise Python exceptions.
+- [x] Add a first-class `ReusableSolver` context manager for borrowed scalar GPU operators.
+  - Own configuration and native matrix/vector/solver handles; reference-count shared resources for safe multi-instance cleanup. Expose `setup(csr)` followed by repeated `solve(rhs, out=solution)` calls, plus idempotent `destroy()`.
+  - Reuse attachments and native setup on the steady path; rebind changed vectors without payload copies. Refresh coefficients through explicit setup; recreate solver state when CSR storage changes.
+  - Reject use-after-close, solve-before-setup, incompatible vectors and reentrant use. Copy the configuration at construction.
+  - 155 regressions, 19 PTDS cases, and 19 memory-check cases pass. Warmed timings match the explicit API within measurement variation. See [usage and measured performance](docs/reusable_solver.md).
+- [ ] Expand observable state beyond pointers, status and iteration count: `is_setup`, shape/block dimensions, dtype/mode, device, setup generation, solve count, last setup action, and whether the hierarchy was rebuilt or reused.
 - [ ] Make matrix updates safe and convenient.
   - Provide `replace_coefficients(..., resetup="auto|reuse_structure|rebuild")` with documented mappings to AMGX setup/resetup policies.
   - Track the bound matrix and its revision so a stale hierarchy cannot be used silently after values, sparsity, block layout, precision, scaling, device, or relevant solver/preconditioner configuration changes.
