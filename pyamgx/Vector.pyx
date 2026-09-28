@@ -1,5 +1,7 @@
 from libc.stdint cimport uintptr_t
+cimport cython
 
+@cython.no_gc_clear
 cdef class Vector:
     """
     Vector: Class for creating and handling AMGX Vector objects.
@@ -26,6 +28,103 @@ cdef class Vector:
 
     """
     cdef AMGX_vector_handle vec
+    cdef object _owner
+    cdef object _dtype
+    cdef object _stream_override
+    cdef object _mode
+    cdef Resources _resources
+    cdef uintptr_t _attached_ptr
+    cdef size_t _attached_bytes
+    cdef bint _busy
+
+    def __cinit__(self):
+        self.vec = NULL
+        self._owner = None
+        self._busy = False
+
+    def __dealloc__(self):
+        # A borrowed allocation must never outlive its Python owner reference.
+        # The C destroy waits for AMGX completion before releasing the handle.
+        if self.vec != NULL and self._owner is not None:
+            AMGX_vector_destroy(self.vec)
+            self.vec = NULL
+
+    cdef void _check_available(self) except *:
+        if self.vec == NULL:
+            raise RuntimeError("vector is not created or has been destroyed")
+        if self._busy:
+            raise RuntimeError("vector is in use by an AMGX operation")
+
+    cdef void _begin_use(self) except *:
+        self._check_available()
+        self._busy = True
+        try:
+            if self._owner is not None:
+                ptr, n, byte_count, stream = _attached_descriptor(
+                    self._owner, self._dtype, self._stream_override)
+                if ptr != self._attached_ptr or byte_count != self._attached_bytes:
+                    raise ValueError("attached array storage changed; detach and attach again")
+                check_error(AMGX_vector_synchronize(self.vec, stream))
+        except BaseException:
+            self._busy = False
+            raise
+
+    cdef void _end_use(self):
+        self._busy = False
+
+    @property
+    def is_attached(self):
+        return self._owner is not None
+
+    @property
+    def attached_ptr(self):
+        """Native borrowed pointer, for interoperability identity checks."""
+        self._check_available()
+        cdef void *ptr
+        cdef size_t byte_count
+        cdef int device
+        check_error(AMGX_vector_get_attached_data(self.vec, &ptr, &byte_count, &device))
+        return <uintptr_t>ptr
+
+    def attach(self, data, *, stream=None):
+        """Borrow a writable contiguous CUDA vector, without copying.
+
+        Only scalar real device modes are supported. The vector must be empty.
+        Keep the array's allocation stable and do not access it concurrently
+        with AMGX. This object retains the producer until detach/destroy.
+        CAI v3 supplies the producer stream; v2 requires an explicit integer
+        stream. The descriptor is checked again before each solve, so later
+        writes must be ordered on the producer's exported stream.
+        """
+        self._check_available()
+        if self._mode not in ('dDDI', 'dDFI', 'dFFI'):
+            raise ValueError("attach requires a real CUDA vector mode")
+        if self._owner is not None:
+            raise RuntimeError("vector is already attached; detach first")
+        ptr, n, byte_count, producer_stream = _attached_descriptor(data, self._dtype, stream)
+        check_error(AMGX_vector_attach(self.vec, n, <void *><uintptr_t>ptr,
+                                      byte_count, producer_stream))
+        self._owner = data
+        self._stream_override = stream
+        self._attached_ptr = ptr
+        self._attached_bytes = byte_count
+        return self
+
+    def detach(self):
+        """Release the borrow after completion, returning its owner without copying.
+
+        The native vector becomes empty and can be attached or uploaded again.
+        """
+        self._check_available()
+        if self._owner is None:
+            raise RuntimeError("vector is not attached")
+        check_error(AMGX_vector_detach(self.vec))
+        owner = self._owner
+        self._owner = None
+        self._stream_override = None
+        self._attached_ptr = 0
+        self._attached_bytes = 0
+        return owner
 
     def create(self, Resources rsrc, mode='dDDI'):
         """
@@ -43,7 +142,12 @@ cdef class Vector:
         -------
         self : Vector
         """
+        if self.vec != NULL:
+            raise RuntimeError("vector is already created")
         check_error(AMGX_vector_create(&self.vec, rsrc.rsrc, asMode(mode)))
+        self._mode = mode
+        self._dtype = {'D': np.dtype('float64'), 'F': np.dtype('float32')}.get(mode[1])
+        self._resources = rsrc
         return self
 
     def upload(self, data, block_dim=1):
@@ -65,12 +169,15 @@ cdef class Vector:
         self : Vector
         """
 
-        if block_dim == 1:
-            n = data.size
-        else:
-            n = data.size/block_dim
+        self._check_available()
+        if self._dtype is None:
+            raise ValueError("upload supports real vector precision only")
+        block_dim = operator.index(block_dim)
+        if block_dim < 1 or data.size % block_dim:
+            raise ValueError("vector size must be divisible by a positive block dimension")
+        n = data.size // block_dim
 
-        cdef uintptr_t ptr = ptr_from_array_interface(data, "float64")
+        cdef uintptr_t ptr = ptr_from_array_interface(data, self._dtype)
         self.upload_raw(ptr, n, block_dim)
 
         return self
@@ -93,13 +200,16 @@ cdef class Vector:
             Number of values per block.
         """
 
+        self._check_available()
+        if self._owner is not None:
+            raise RuntimeError("upload would copy into borrowed storage; detach first")
         check_error(AMGX_vector_upload(
             self.vec, n, block_dim,
             <void *> ptr))
 
         return self
 
-    def download(self, double[:] data=None):
+    def download(self, data=None):
         """
         v.download(data)
 
@@ -110,12 +220,24 @@ cdef class Vector:
         data : array, ndim=1
             Array to copy data to.
         """
+        self._check_available()
+        n, block_dim = self.get_size()
+        size = n * block_dim
+        if self._dtype is None:
+            raise ValueError("download supports real vector precision only")
         if data is None:
-            n = self.get_size()[0]
-            data = np.zeros(n, dtype=np.float64)
-
-        self.download_raw(<uintptr_t> &data[0])
-        return np.asarray(data)
+            data = np.empty(size, dtype=self._dtype)
+        if not isinstance(data, np.ndarray):
+            try:
+                data = np.asarray(memoryview(data))
+            except TypeError:
+                raise TypeError("download requires a host buffer; attached CUDA solutions need no download") from None
+        if (data.ndim != 1 or data.size < size or data.dtype != self._dtype
+                or not data.flags.c_contiguous or not data.flags.writeable):
+            raise ValueError("download requires a writable contiguous NumPy vector with sufficient capacity and matching dtype")
+        if size:
+            self.download_raw(data.ctypes.data)
+        return data
 
     def download_raw(self, uintptr_t ptr):
         """
@@ -130,7 +252,11 @@ cdef class Vector:
             An integer (or long integer, if required) that
             points to the array containing data
         """
-        check_error(AMGX_vector_download(self.vec, <void *>ptr))
+        self._begin_use()
+        try:
+            check_error(AMGX_vector_download(self.vec, <void *>ptr))
+        finally:
+            self._end_use()
 
     def set_zero(self, n=None, block_dim=None):
         """
@@ -164,8 +290,11 @@ cdef class Vector:
         if block_dim is None:
             block_dim = block_dim_
 
-        check_error(AMGX_vector_set_zero(
-            self.vec, n, block_dim))
+        self._begin_use()
+        try:
+            check_error(AMGX_vector_set_zero(self.vec, n, block_dim))
+        finally:
+            self._end_use()
 
     def get_size(self):
         """
@@ -181,6 +310,7 @@ cdef class Vector:
         block_dim : int
             The block size.
         """
+        self._check_available()
         cdef int n, block_dim
         check_error(AMGX_vector_get_size(
             self.vec,
@@ -193,4 +323,8 @@ cdef class Vector:
 
         Destroy the underlying AMGX Vector object.
         """
+        self._check_available()
         check_error(AMGX_vector_destroy(self.vec))
+        self.vec = NULL
+        self._owner = None
+        self._resources = None

@@ -1,3 +1,5 @@
+from libc.stdint cimport uintptr_t
+
 cdef extern from "amgx_c.h":
 
     # Return codes
@@ -102,6 +104,15 @@ cdef extern from "amgx_c.h":
         const AMGX_matrix_handle mtx,
         int *nnz)
 
+    AMGX_RC AMGX_matrix_attach_csr(AMGX_matrix_handle mtx, int n, int nnz,
+        int *rows, int *cols, void *data, size_t rows_bytes, size_t cols_bytes,
+        size_t data_bytes, uintptr_t rows_stream, uintptr_t cols_stream, uintptr_t data_stream)
+    AMGX_RC AMGX_matrix_synchronize(AMGX_matrix_handle mtx,
+        uintptr_t rows_stream, uintptr_t cols_stream, uintptr_t data_stream)
+    AMGX_RC AMGX_matrix_detach(AMGX_matrix_handle mtx)
+    AMGX_RC AMGX_matrix_get_attached_data(AMGX_matrix_handle mtx,
+        void **rows, void **cols, void **data)
+
     AMGX_RC AMGX_matrix_upload_all(
         AMGX_matrix_handle mtx, int n, int nnz,
         int block_dimx, int block_dimy,
@@ -119,6 +130,13 @@ cdef extern from "amgx_c.h":
     AMGX_RC AMGX_vector_create(
         AMGX_vector_handle *vec, AMGX_resources_handle rsc, AMGX_Mode mode)
     AMGX_RC AMGX_vector_destroy(AMGX_vector_handle vec)
+
+    AMGX_RC AMGX_vector_attach(AMGX_vector_handle vec, int n, void *data,
+        size_t capacity_bytes, uintptr_t producer_stream)
+    AMGX_RC AMGX_vector_synchronize(AMGX_vector_handle vec, uintptr_t producer_stream)
+    AMGX_RC AMGX_vector_detach(AMGX_vector_handle vec)
+    AMGX_RC AMGX_vector_get_attached_data(AMGX_vector_handle vec,
+        void **data, size_t *size_bytes, int *device)
 
     AMGX_RC AMGX_vector_upload(
         AMGX_vector_handle vec, int n, int block_dim,

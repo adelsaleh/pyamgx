@@ -5,7 +5,7 @@
 For installation instructions, overview and examples, see the
 [documentation](https://pyamgx.readthedocs.io).
 
-## HDG workspace integration
+## Experimental HDG integration
 
 The `quality-of-life` branch is the PyAMGX binding component qualified with the
 sibling HDG solver stack. At commit `6b26b12`, it combines the const-compatible

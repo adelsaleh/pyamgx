@@ -2,6 +2,7 @@ include "amgxc.pxi"
 include "amgxconfig.pxi"
 
 include "utils.pyx"
+include "cuda_array_interface.py"
 include "Errors.pyx"
 include "System.pyx"
 include "Config.pyx"
@@ -53,11 +54,15 @@ def read_system(Matrix A, Vector rhs, Vector sol, fname):
     fname : str
         Path/name of MatrixMarket file.
     """
+    A._check_available()
+    if A.is_attached:
+        raise RuntimeError("cannot read a system into attached CSR; detach first")
     err = AMGX_read_system(
         A.mtx,
         rhs.vec,
         sol.vec,
         fname.encode())
+    check_error(err)
 
 
 def finalize():

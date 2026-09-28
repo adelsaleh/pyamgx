@@ -1,6 +1,6 @@
 # pyamgx communication, logging, and CuPy roadmap
 
-This roadmap makes pyamgx a reliable Python boundary for AMGX: numerical telemetry must be correct, C failures must become useful Python exceptions, logs must integrate with Python tooling, and NumPy/CuPy transfers must have explicit device and stream semantics. Implementation and tests should use the local `../AMGX` and `../cupy` repositories as the authoritative C API and CuPy behavior references.
+This roadmap makes pyamgx a reliable Python boundary for AMGX: numerical telemetry must be correct, C failures must become useful Python exceptions, logs must integrate with Python tooling, and NumPy/CuPy transfers must have explicit device and stream semantics. Implementation and tests should use the matching AMGX and CuPy source repositories as the authoritative C API and CuPy behavior references.
 
 Work for this roadmap continues on local development branch `quality-of-life`, matching the AMGX development branch.
 
